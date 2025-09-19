@@ -11,12 +11,12 @@ carefully, and committing progress in small, atomic commits on GitHub.
 
 ## 📚 Table of Contents
 
-- [Goals](#-goals)
-- [Suggested Repository Structure](#-suggested-repository-structure)
-- [Git Workflow](#-git-workflow)
-- [Client Requirements](#-client-requirements)
-- [Usage](#-usage)
-- [License](#-license)
+- [Goals](#goals)
+- [Suggested Repository Structure](#suggested-repository-structure)
+- [Git Workflow](#git-workflow)
+- [Client Requirements](#client-requirements)
+- [Usage](#usage)
+- [License](#license)
 - [Authors](#authors)
 
 ## Goals
@@ -38,20 +38,21 @@ carefully, and committing progress in small, atomic commits on GitHub.
 - GitHub repository with well-structured commit history.
 
 ## Suggested Repository Structure
-
-src/
-app/ (store.js)
-routes/ (public.js, dashboard.js)
-layouts/ (PublicLayout.jsx, DashboardLayout.jsx)
-features/
-auth/ (authSlice.js, useAuth.js, LoginPage.jsx)
-inventory/ (inventorySlice.js, pages/)
-bookings/ (bookingsSlice.js, pages/)
-components/ (UI components, SearchBar.jsx)
-hooks/ (useDebounce.js, usePaginatedQuery.js, useForm.js)
-styles/ (index.css)
-main.jsx
-App.jsx
+```react-training-project
+├── src/
+├── app/ (store.js)
+├── routes/ (public.js, dashboard.js)
+├── layouts/ (PublicLayout.jsx, DashboardLayout.jsx)
+├── features/
+├── auth/ (authSlice.js, useAuth.js, LoginPage.jsx)
+├── inventory/ (inventorySlice.js, pages/)
+├── bookings/ (bookingsSlice.js, pages/)
+├── components/ (UI components, SearchBar.jsx)
+├── hooks/ (useDebounce.js, usePaginatedQuery.js, useForm.js)
+├── styles/ (index.css)
+├── main.jsx
+├── App.jsx
+```
 
 ## Git Workflow
 
@@ -103,3 +104,7 @@ routes.
 ## License
 
 This project is licensed under the [MIT License](LICENSE), except for third-party assets.
+
+## Authors
+
+Currently just promiselb
