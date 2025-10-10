@@ -39,6 +39,7 @@ carefully, and committing progress in small, atomic commits on GitHub.
 
 ## Suggested Repository Structure
 ```react-training-project
+
 ├── src/
 ├── app/ (store.js)
 ├── routes/ (public.js, dashboard.js)

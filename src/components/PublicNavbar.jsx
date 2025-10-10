@@ -6,7 +6,7 @@ TODO: Add more links to the navbar
 
 */
 
-function Navbar() {
+function PublicNavbar() {
   const linkCLass =  ({ isActive}) => isActive ?  
                   'bg-black text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2' :
                   'text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2';
@@ -22,10 +22,10 @@ function Navbar() {
               <img
                 className="h-10 w-auto"
                 src={logo}
-                alt="React Jobs"
+                alt=" GearRent — Camera & Gear Rental Dashboard"
               />
               <span className="hidden md:block text-white text-2xl font-bold ml-2">
-                React Jobs
+                 GearRent — Camera & Gear Rental Dashboard
               </span>
             </NavLink>
             <div className="md:ml-auto">
@@ -34,6 +34,16 @@ function Navbar() {
                   to="/"
                   className={linkCLass}>
                     Home
+                </NavLink>
+                <NavLink
+                  to="/signin"
+                  className={linkCLass}>
+                    Sign In
+                </NavLink>
+                <NavLink
+                  to="/signup"
+                  className={linkCLass}>
+                    Sign Up
                 </NavLink>
               </div>
             </div>
@@ -44,4 +54,4 @@ function Navbar() {
   )
 }
 
-export default Navbar
+export default PublicNavbar
