@@ -10,6 +10,8 @@ import {
 
 import { useChangeTitle } from "../hooks/useChangeTitle";
 
+// # DONE 50%
+// TODO: call your sign-UP API 
 const SignUp = () => {
   useChangeTitle("Public - Sign Up");
 

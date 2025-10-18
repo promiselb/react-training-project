@@ -5,6 +5,7 @@ import Reloading from '../components/Reloading'
 import { useChangeTitle } from '../hooks/useChangeTitle'
 import ItemListing from '../components/ItemListing'
 
+// TODO: Make this page responsive and more visually appealing
 const ItemPage = () => {
   const { id } = useParams();
   
