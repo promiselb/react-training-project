@@ -1,6 +1,7 @@
 import { useState, useEffect} from 'react'
 import ItemListing from './ItemListing'
 import Reloading from './Reloading'
+import { fetchItems } from '../utils/fetchFunctions'
 
 const ItemsListings = () => {
   // >> Items to be loaded
@@ -12,22 +13,21 @@ const ItemsListings = () => {
 
   // $ Filter items based on search term
   const [searchTerm, setSearchTerm] = useState("");
-
-  useEffect( () => {
-    const fetchItems = async() => {
+  
+  useEffect(() => {
+    const loadItems = async () => {
       try {
-        const res = await fetch('/api/items')
-        const data = await res.json()
-        setItems(data)
+        const data = await fetchItems();
+        setItems(data);
       } catch (err) {
-        console.error('Error fetching items:', err)
+        console.error(err);
       } finally {
         setLoading(false);
-      } 
-    }
+      }
+    };
 
-    fetchItems();
-  })
+    loadItems();
+  }, []); // 👈 Run once on mount
 
   return (
       <div className="min-h-screen bg-gray-50 py-10 px-6">
@@ -60,3 +60,17 @@ const ItemsListings = () => {
 }
 
 export default ItemsListings
+
+
+// const fetchItems = async() => {
+    //   try {
+    //     const res = await fetch('/api/items')
+    //     const data = await res.json()
+    //     setItems(data)
+    //   } catch (err) {
+    //     console.error('Error fetching items:', err)
+    //   } finally {
+    //     setLoading(false);
+    //   } 
+    // }
+    // fetchItems();

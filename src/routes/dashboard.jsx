@@ -5,7 +5,7 @@ import DashboardLayout from "../layouts/DashboardLayout";
 import DashboardHome from "../pages/DashboardHome";
 
 import InventoryDetailPage from "../features/inventory/pages/InventoryDetail";
-import InventoryListPage from "../features/inventory/pages/InventoryList";
+import InventoryPage from "../features/inventory/pages/InventoryPage";
 import InventoryFormPage from "../features/inventory/pages/InventoryForm";
 
 import BookingDetailPage from "../features/bookings/pages/BookingDetail";
@@ -27,9 +27,9 @@ const dashboardRoutes = (
     <Route index element={<DashboardHome />} />
 
     {/* Inventory */}
-    <Route path="inventory" element={<InventoryListPage />} />
+    <Route path="inventory" element={<InventoryPage />} />
     <Route path="inventory/new" element={<InventoryFormPage />} />
-    <Route path="inventory/:id/edit" element={<InventoryDetailPage />} />
+    <Route path="inventory/:id" element={<InventoryDetailPage />} />
 
     {/* Bookings */}
     <Route path="bookings" element={<BookingsListPage />} />

@@ -1,25 +1,56 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { fetchItems, addItem, updateItem, deleteItem } from "./inventoryThunks";
+import { useSelector } from 'react-redux';
 
-const initialState = [
-  { id: 1, name: 'Laptop', quantity: 5 },
-  { id: 2, name: 'Phone', quantity: 10 },
-];
+
+const initialState = {
+    items: [],
+    loading: false,
+    error: null,
+}
 
 const inventorySlice = createSlice({
   name: 'inventory',
   initialState,
-  reducers: {
-    sellItem: (state, action) => {
-      const item = state.find(i => i.id === action.payload);
-      if (item && item.quantity > 0) {
-        item.quantity -= 1;
-      }
-    },
-    addItem: (state, action) => {
-      state.push(action.payload);
-    },
-  },
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+    // You can handle async actions here if needed
+
+    // Fetch Items
+    .addCase(fetchItems.pending, (state) => {
+      state.loading = true;
+      state.error = null;
+    })
+    .addCase(fetchItems.fulfilled, (state, action) => {
+      state.loading = false;
+      state.items = action.payload;
+    })
+    .addCase(fetchItems.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    })
+
+    // Add Item
+    .addCase(addItem.fulfilled, (state, action) => {
+      state.items.push(action.payload);
+    })
+
+    // Update Item
+    .addCase(updateItem.fulfilled, (state, action) => {
+      const index = state.items.findIndex(item => item.id === action.payload.id);
+      if (index !== -1) {
+        state.items[index] = action.payload;
+      } 
+    })
+
+    // Delete Item
+    .addCase(deleteItem.fulfilled, (state, action) => {
+      state.items = state.items.filter(item => item.id !== action.payload);
+    });
+  }
 });
 
-export const { sellItem, addItem } = inventorySlice.actions;
+export const selectInventory = (state) => state.inventory;
+
 export default inventorySlice.reducer;

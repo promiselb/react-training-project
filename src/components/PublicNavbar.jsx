@@ -45,6 +45,11 @@ function PublicNavbar() {
                   className={linkCLass}>
                     Sign Up
                 </NavLink>
+                <NavLink
+                  to="/dashboard"
+                  className={linkCLass}>
+                    Dashboard
+                </NavLink>
               </div>
             </div>
           </div>
