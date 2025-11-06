@@ -1,95 +1,136 @@
 {
-    "items": [
-        {
-        "id": 1,
-        "name": "Canon EOS R5",
-        "description": "High-end mirrorless camera with 45MP sensor and 8K video recording.",
-        "price": 60,
-        "isAvailable": true,
-        "imageUrl": "data:image/jpeg;base64,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",
-        "category": "Camera",
-        "brand": "Canon"
-        },
-        {
-        "id": 2,
-        "name": "Sony A7 IV",
-        "description": "Full-frame hybrid mirrorless camera with 33MP sensor, great for video and photo.",
-        "price": 55,
-        "isAvailable": false,
-        "imageUrl": "https://www.shopmoment.com/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Fsoj3d0g3%2Fproduction%2F2458296b2845244bd616fc1f8e189e7410dca016-1200x800.webp%3Fw%3D1440%26h%3D960%26fit%3Dcrop%26auto%3Dformat%26dpr%3D2&w=1920&q=75",
-        "category": "Camera",
-        "brand": "Sony"
-        },
-        {
-        "id": 3,
-        "name": "DJI Ronin-S",
-        "description": "3-axis handheld gimbal stabilizer for DSLRs and mirrorless cameras.",
-        "price": 25,
-        "isAvailable": true,
-        "imageUrl": "https://www.d1store.com.au/images/lounges/ronin-sc-rundown-lounge3.jpg",
-        "category": "Stabilizer",
-        "brand": "DJI"
-        },
-        {
-        "id": 4,
-        "name": "Sigma 24-70mm f/2.8",
-        "description": "Professional zoom lens with fast aperture and sharp image quality. wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww wwwwwwwwwww",
-        "price": 20,
-        "isAvailable": true,
-        "imageUrl": "https://www.sigma-global.com/en/lenses/a019_24_70_28/images/product_img01.png",
-        "category": "Lens",
-        "brand": "Sigma"
-        }
-    ],
-  
-    "accounts": [
-        {
-        "id": 1,
-        "name": "Admin User",
-        "email": "admin@example.com",
-        "password": "admin123",     
-        "role": "admin",
-        "phoneNumber": "+123456789",
-        "array_BookingsIds": [1]
-        },
-        {
-        "id": 2,
-        "name": "John Doe",
-        "email": "john@example.com",
-        "password": "password123",
-        "role": "customer",
-        "phoneNumber": "+198765432",
-        "array_BookingsIds": [2]
-        },
-        {
-        "id": 3,
-        "name": "Jane Smith",
-        "email": "jane@example.com",
-        "password": "password123",
-        "role": "staff",
-        "phoneNumber": "+112233445",
-        "array_BookingsIds": []
-        }
-    ],
-
-    "bookings": [
-        {
-        "id": 1,
-        "accountId": 1,
-        "array_itemsIds": [1],
-        "total": 60,
-        "start_date": "2025-09-25",
-        "end_date": "2025-09-27",
-        "status": "confirmed"
-        },
-        {
-        "id": 2,
-        "accountId": 2,
-        "array_itemsIds": [2, 3],
-        "total": 80,
-        "start_date": "2025-10-01",
-        "end_date": "2025-10-05",
-        "status": "pending"
-        }
-    ]
+  "items": [
+    {
+      "id": 1,
+      "name": "Canon EOS R5",
+      "description": "High-end mirrorless camera with 45MP sensor and 8K video recording.",
+      "price": 60,
+      "isAvailable": true,
+      "imageUrl": "data:image/jpeg;base64,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",
+      "category": "Camera",
+      "brand": "Canon"
+    },
+    {
+      "id": 2,
+      "name": "Sony A7 IV",
+      "description": "Full-frame hybrid mirrorless camera with 33MP sensor, great for video and photo.",
+      "price": 55,
+      "isAvailable": false,
+      "imageUrl": "https://www.shopmoment.com/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Fsoj3d0g3%2Fproduction%2F2458296b2845244bd616fc1f8e189e7410dca016-1200x800.webp%3Fw%3D1440%26h%3D960%26fit%3Dcrop%26auto%3Dformat%26dpr%3D2&w=1920&q=75",
+      "category": "Camera",
+      "brand": "Sony"
+    },
+    {
+      "id": 3,
+      "name": "DJI Ronin-S",
+      "description": "3-axis handheld gimbal stabilizer for DSLRs and mirrorless cameras.",
+      "price": 25,
+      "isAvailable": true,
+      "imageUrl": "https://www.d1store.com.au/images/lounges/ronin-sc-rundown-lounge3.jpg",
+      "category": "Stabilizer",
+      "brand": "DJI"
+    },
+    {
+      "id": 4,
+      "name": "Sigma 24-70mm f/2.8",
+      "description": "Professional zoom lens with fast aperture and sharp image quality. wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww wwwwwwwwwww",
+      "price": 20,
+      "isAvailable": true,
+      "imageUrl": "https://www.sigma-global.com/en/lenses/a019_24_70_28/images/product_img01.png",
+      "category": "Lens",
+      "brand": "Sigma"
+    },
+    {
+      "id": 1761993947591,
+      "name": "Headphones",
+      "quantity": 3
+    },
+    {
+      "id": 1761995560842,
+      "name": "Headphones",
+      "quantity": 3
+    }
+  ],
+  "accounts": [
+    {
+      "id": 1,
+      "name": "Admin User",
+      "email": "admin@example.com",
+      "password": "admin123",
+      "role": "admin",
+      "phoneNumber": "+123456789",
+      "array_BookingsIds": [
+        1
+      ]
+    },
+    {
+      "id": 2,
+      "name": "John Doe",
+      "email": "john@example.com",
+      "password": "password123",
+      "role": "customer",
+      "phoneNumber": "+198765432",
+      "array_BookingsIds": [
+        2
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Jane Smith",
+      "email": "jane@example.com",
+      "password": "password123",
+      "role": "staff",
+      "phoneNumber": "+112233445",
+      "array_BookingsIds": []
+    }
+  ],
+  "bookings": [
+    {
+      "id": 1,
+      "accountId": 1,
+      "array_itemsIds": [
+        1
+      ],
+      "total": 60,
+      "start_date": "2025-09-25",
+      "end_date": "2025-09-27",
+      "status": "confirmed"
+    },
+    {
+      "id": 2,
+      "accountId": 2,
+      "array_itemsIds": [
+        2,
+        3
+      ],
+      "total": 80,
+      "start_date": "2025-10-01",
+      "end_date": "2025-10-05",
+      "status": "pending"
+    },
+    {
+      "id": "18a4",
+      "accountId": "3",
+      "array_itemsIds": [
+        4
+      ],
+      "payment_method": "n",
+      "start_date": "2025-11-06",
+      "end_date": "2025-11-07",
+      "status": "pending",
+      "total": 20
+    },
+    {
+      "id": 1762383174902,
+      "accountId": "6",
+      "array_itemsIds": [
+        4
+      ],
+      "payment_method": "n",
+      "start_date": "2025-11-06",
+      "end_date": "2025-11-09",
+      "status": "confirmed",
+      "total": 20
+    }
+  ]
 }

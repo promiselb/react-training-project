@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import inventoryReducer from '../features/inventory/inventorySlice';
-import bookingReducer from '../features/bookings/bookingsSlice';
+import bookingsReducer from '../features/bookings/bookingsSlice';
 
 const initialState = {
     
@@ -9,7 +9,7 @@ const initialState = {
 export const store = configureStore({
     reducer: {
         inventory: inventoryReducer,
-        booking: bookingReducer,
+        bookings: bookingsReducer,
     }
 })
 // const 

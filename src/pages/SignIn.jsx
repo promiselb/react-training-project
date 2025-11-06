@@ -4,7 +4,7 @@ import {
   validateUsername,
   validateEmail,
   validatePassword
-} from "../utils/helperFunctions";;
+} from "../utils/accountValidationFunctions";;
 
 import { useChangeTitle } from "../hooks/useChangeTitle";
 

@@ -9,7 +9,7 @@ import InventoryPage from "../features/inventory/pages/InventoryPage";
 import InventoryFormPage from "../features/inventory/pages/InventoryForm";
 
 import BookingDetailPage from "../features/bookings/pages/BookingDetail";
-import BookingsListPage from "../features/bookings/pages/BookingsList";
+import BookingsPage from "../features/bookings/pages/BookingsPage";
 
 // A wrapper that protects routes
 // import RequireAuth from "../features/auth/RequireAuth";
@@ -32,7 +32,7 @@ const dashboardRoutes = (
     <Route path="inventory/:id" element={<InventoryDetailPage />} />
 
     {/* Bookings */}
-    <Route path="bookings" element={<BookingsListPage />} />
+    <Route path="bookings" element={<BookingsPage />} />
     <Route path="bookings/:id" element={<BookingDetailPage />} />
   </Route>
 );

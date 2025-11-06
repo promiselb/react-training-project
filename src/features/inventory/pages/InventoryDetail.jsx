@@ -1,8 +1,7 @@
 import { useState,useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { useInventory } from "../../../hooks/useInventory";
-import { selectBookings } from "../../bookings/bookingsSlice";
+import { useBookings } from  "../../../hooks/useBookings";
 import { useChangeTitle } from "../../../hooks/useChangeTitle";
 import Reloading from "../../../components/Reloading";
 
@@ -11,22 +10,25 @@ const InventoryDetail = () => {
   const { id } = useParams();
   useChangeTitle(`Inventory Detail ${id}`);
   
-  const dispatch = useDispatch();
   const {items, loading, error} = useInventory();
+  const {bookingsArray, loadingBookings, errorBookings} = useBookings()
 
-  if (error) return <p className="p-6 text-red-500">Error: {error}</p>;
+  const item = items.find( (item) => String(item.id) ===  id);
   
-  const bookings = useSelector(selectBookings);
-  
+  const numeric_id = Number(id);
+  const itemBookingsIds = (bookingsArray ?? []).filter(
+    (b) => b.array_itemsIds.includes(numeric_id))
+    .map(b => b.id);
 
-  const item = items.find( (item) => String(item.id) === String(id) );
-  
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState(item);
-  const itemBookingsIds = []
-  //  bookings.filter(
-  //   (b) => b.array_itemsIds.includes(id))
-  //   .map(b => b.id);
+
+  const handleEditToggle = () => setIsEditing(!isEditing);
+  
+  if (loadingBookings || loading) return <Reloading loading />;
+  if (error) return <p className="p-6 text-red-500">Error: {error}</p>;
+  if (errorBookings) return <p className="p-6 text-red-500">Error: {errorBookings}</p>;
+  if (!item) return <p className="p-6 text-red-500">Item not found.</p>;
 
   const handleDelete = () => {
     if (window.confirm("Are you sure you want to delete this item?")) {
@@ -34,8 +36,6 @@ const InventoryDetail = () => {
       // TODO: implement delete API
     }
   };
-
-  const handleEditToggle = () => setIsEditing(!isEditing);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -47,14 +47,10 @@ const InventoryDetail = () => {
     setIsEditing(false);
     // TODO: send update request to backend
   };
-  console.log("Bookings from Redux:", bookings);
-  if (!item) return <p className="p-6 text-red-500">Item not found.</p>;
-
+  
   return (
     <div>
-    { loading ? (
-      <Reloading loading={loading} />
-    ) : (
+
       <div className="p-6 space-y-6">
       {/* Header */}
       <header className="border-b border-gray-300 pb-3">
@@ -74,6 +70,7 @@ const InventoryDetail = () => {
       {/* Details or Edit form */}
       {!isEditing ? (
         <div className="grid grid-cols-2 gap-4">
+          {/* <p><strong>Item ID:</strong> {item.id}</p> */}
           <p><strong>Description:</strong> {item.description}</p>
           <p><strong>Price:</strong> ${item.price}</p>
           <p><strong>Available:</strong> {item.isAvailable ? "Yes" : "No"}</p>
@@ -151,18 +148,41 @@ const InventoryDetail = () => {
               </tr>
             </thead>
             <tbody>
-              {itemBookingsIds.map((bId) => (
-                <tr key={bId} className="border-t">
-                  <td className="p-2">{bId}</td>
+              {itemBookingsIds.map(
+                (bId) => {
+                  const booking = bookingsArray.find((b) => String(b.id) === String(bId));
+                  console.log("Rendering booking:", booking);
+                  if (!booking) return null;
+                  return (
+                
+                <tr key={booking.id} className="border-t">
                   <td className="p-2">
-                    <Link to={`dashbaord/accounts/${bookings[bId].accountId}`}>{bookings[bId].accountId}
+                    <Link className="text-green-500 underline" 
+                    to={`/dashboard/bookings/${booking.id}`}>
+                    {booking.id}
                     </Link>
                   </td>
-                  <td className="p-2">{bookings[bId].start_date}</td>
-                  <td className="p-2">{bookings[bId].end_date}</td>
-                  <td className="p-2">{bookings[bId].status}</td>
+                  <td className="p-2">
+                    <Link className="text-green-500 underline" 
+                    to={`/dashbaord/accounts/${booking.accountId}`}>
+                      {booking.accountId}
+                    </Link>
+                  </td>
+                  <td className="p-2">{booking.start_date}</td>
+                  <td className="p-2">{booking.end_date}</td>
+                  <td className={`p-2 font-semibold
+                      ${booking.status === "confirmed"
+                        ? "text-green-600"
+                        : booking.status === "pending"
+                        ? "text-yellow-600"
+                        : "text-gray-600"
+                      }`}>
+                    {booking.status}
+                  </td>
                 </tr>
-              ))}
+                  )}
+                )
+              }
             </tbody>
           </table>
         ) : (
@@ -186,8 +206,6 @@ const InventoryDetail = () => {
         </button>
       </div>
     </div>
-    )
-  }
 
   </div>
   );

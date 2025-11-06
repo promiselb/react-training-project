@@ -4,9 +4,9 @@ import { useSelector } from 'react-redux';
 
 
 const initialState = {
-    items: [],
-    loading: false,
-    error: null,
+  items: [],
+  loading: false,
+  error: null,
 }
 
 const inventorySlice = createSlice({

@@ -6,7 +6,7 @@ import {
   validatePassword,
   validateConfirmPassword,
   validatePhoneNumber,
-} from "../utils/helperFunctions";
+} from "../utils/accountValidationFunctions";
 
 import { useChangeTitle } from "../hooks/useChangeTitle";
 
