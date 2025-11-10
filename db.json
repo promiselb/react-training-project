@@ -51,7 +51,7 @@
       "brand": "Natures Co."
     },
     {
-      "id": 1762734118292,
+      "id": "1762734118292",
       "name": "snacks",
       "description": "fwq",
       "price": 60,
@@ -64,7 +64,7 @@
   "accounts": [
     {
       "id": "1",
-      "name": "Admin User",
+      "username": "Admin_User",
       "email": "admin@example.com",
       "password": "admin123",
       "role": "admin",
@@ -75,10 +75,10 @@
     },
     {
       "id": "2",
-      "name": "John Doe",
+      "username": "John Doe",
       "email": "john@example.com",
       "password": "password123",
-      "role": "customer",
+      "role": "client",
       "phoneNumber": "+198765432",
       "array_BookingsIds": [
         2
@@ -86,12 +86,25 @@
     },
     {
       "id": "3",
-      "name": "Jane Smith",
+      "username": "Jane Smith",
       "email": "jane@example.com",
       "password": "password123",
       "role": "staff",
       "phoneNumber": "+112233445",
       "array_BookingsIds": []
+    },
+    {
+      "id": "1762783920811",
+      "username": "Rami Taha",
+      "email": "example3@gmail.com",
+      "password": "123f",
+      "phoneNumber": "12345678",
+      "array_BookingsIds": [
+        1,
+        2
+      ],
+      "role": "client",
+      "string_bookingsIds": "1,2"
     }
   ],
   "bookings": [

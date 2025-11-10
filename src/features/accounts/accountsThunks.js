@@ -63,3 +63,21 @@ export const deleteAccount = createAsyncThunk(
     }
 );
 
+// returns true if credentials are provided, false otherwise
+export const loginAccount = createAsyncThunk(
+    "accounts/loginAccount",
+    async (credentials) => {
+        return !!credentials
+        // try {
+        //     const res = await fetch('/api/accounts/login', {
+        //         method: 'POST',
+        //         headers: { 'Content-Type': 'application/json' },
+        //         body: JSON.stringify(credentials),
+        //     });
+        //     const data = await res.json();
+        //     return data;
+        // } catch (err) {
+        //     throw err;
+        // }
+    }
+);

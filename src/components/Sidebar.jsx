@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { FiHome, FiBarChart2, FiCalendar, FiPackage } from "react-icons/fi";
+import { FiHome, FiActivity, FiBarChart2, FiCalendar, FiPackage } from "react-icons/fi";
 
 const Sidebar = () => {
   const [width, setWidth] = useState(240); // default width
@@ -42,6 +42,7 @@ const Sidebar = () => {
       <nav className="flex-1 space-y-2 p-2">
         <SidebarLink to="/" icon={<FiHome />} label="Catalogue" collapsed={isCollapsed} />
         <SidebarLink to="/dashboard" icon={<FiBarChart2 />} label="Overview" collapsed={isCollapsed} />
+        <SidebarLink to="/dashboard/accounts" icon={<FiActivity />} label="Accounts" collapsed={isCollapsed} />
         <SidebarLink to="/dashboard/bookings" icon={<FiCalendar />} label="Bookings" collapsed={isCollapsed} />
         <SidebarLink to="/dashboard/inventory" icon={<FiPackage />} label="Inventory" collapsed={isCollapsed} />
       </nav>

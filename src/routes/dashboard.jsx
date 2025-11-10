@@ -4,6 +4,9 @@ import DashboardLayout from "../layouts/DashboardLayout";
 // Dashboard pages
 import DashboardHome from "../pages/DashboardHome";
 
+import AccountDetail from "../features/accounts/pages/AccountDetail";
+import AccountsPage from "../features/accounts/pages/AccountsPage";
+
 import InventoryDetailPage from "../features/inventory/pages/InventoryDetail";
 import InventoryPage from "../features/inventory/pages/InventoryPage";
 import InventoryFormPage from "../features/inventory/pages/InventoryForm";
@@ -25,6 +28,10 @@ const dashboardRoutes = (
   >
     {/* Dashboard home */}
     <Route index element={<DashboardHome />} />
+
+    {/* Accounts */}
+    <Route path="accounts" element={<AccountsPage />} />
+    <Route path="accounts/:id" element={<AccountDetail />} />
 
     {/* Inventory */}
     <Route path="inventory" element={<InventoryPage />} />
