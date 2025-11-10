@@ -3,13 +3,17 @@ import { Link, useParams } from "react-router-dom";
 import { useInventory } from "../../../hooks/useInventory";
 import { useBookings } from  "../../../hooks/useBookings";
 import { useChangeTitle } from "../../../hooks/useChangeTitle";
+import { useDispatch } from "react-redux";
+import { updateItem, deleteItem } from "../inventoryThunks";
+import { toast } from "react-toastify";
 import Reloading from "../../../components/Reloading";
 
 const InventoryDetail = () => {
   
   const { id } = useParams();
   useChangeTitle(`Inventory Detail ${id}`);
-  
+  const dispatch = useDispatch();
+
   const {items, loading, error} = useInventory();
   const {bookingsArray, loadingBookings, errorBookings} = useBookings()
 
@@ -23,7 +27,9 @@ const InventoryDetail = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState(item);
 
-  const handleEditToggle = () => setIsEditing(!isEditing);
+  const handleEditToggle = () => {
+    setIsEditing(!isEditing)
+    setFormData(item);};
   
   if (loadingBookings || loading) return <Reloading loading />;
   if (error) return <p className="p-6 text-red-500">Error: {error}</p>;
@@ -33,7 +39,19 @@ const InventoryDetail = () => {
   const handleDelete = () => {
     if (window.confirm("Are you sure you want to delete this item?")) {
       console.log("Deleting item:", id);
-      // TODO: implement delete API
+
+      const f1 = async() => {
+        try {
+          const res =  await dispatch(deleteItem(numeric_id)).unwrap();
+          console.log("Delete result:", res);
+          toast.success("Item deleted successfully!");
+        } catch (error) {
+          console.error("Delete failed:", error);
+          toast.error("Failed to delete item.");
+        }
+        };
+
+      f1();
     }
   };
 
@@ -43,9 +61,39 @@ const InventoryDetail = () => {
   };
 
   const handleSave = () => {
-    console.log("Updated item:", formData);
+    console.log("Updating item:", formData);
+
+    const { name, description, price, isAvailable, imageUrl, category, brand } = formData;
+    // Simple validation
+    if (!name || !description || !price || !category || !brand) {
+      toast.error("Please fill in all required fields correctly.");
+      return;
+    }
+
+    const updatedItem = {
+      id: id,
+      name,
+      description,
+      price: Number(price),
+      isAvailable,
+      imageUrl,
+      category,
+      brand,
+    };
+
+    const f1 = async() => {
+      try {
+        const res =  await dispatch(updateItem({id, updatedItemData: updatedItem})).unwrap();
+        console.log("Update result:", res);
+        toast.success("Item updated successfully!");
+      } catch (error) {
+        console.error("Update failed:", error);
+        toast.error("Failed to update item.");
+      }
+    };
+
+    f1();
     setIsEditing(false);
-    // TODO: send update request to backend
   };
   
   return (

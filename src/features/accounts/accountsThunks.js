@@ -1,26 +1,26 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-export const fetchBookings = createAsyncThunk(
-    "bookings/fetchBookings",
+export const fetchAccounts = createAsyncThunk(
+    "accounts/fetchAccounts",
     async () => {
         try {
-            const res = await fetch('/api/bookings');
+            const res = await fetch('/api/accounts');
             const data = await res.json();
             return data;
         } catch (err) {
             throw err;
-        }   
+        }
     }
 )
 
-export const addBooking = createAsyncThunk(
-    "bookings/addBooking",
-    async (newBookingData) => {
+export const addAccount = createAsyncThunk(
+    "accounts/addAccount",
+    async (newAccountData) => {
         try {
-            const res = await fetch('/api/bookings', {
+            const res = await fetch('/api/accounts', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(newBookingData),
+                body: JSON.stringify(newAccountData),
             });
             const data = await res.json();
             return data;
@@ -30,14 +30,14 @@ export const addBooking = createAsyncThunk(
     }
 )
 
-export const updateBooking = createAsyncThunk(
-    "bookings/updateBooking",
-    async ({id, updatedBookingData}) => {
+export const updateAccount = createAsyncThunk(
+    "accounts/updateAccount",
+    async ({id, updatedAccountData}) => {
         try {
-            const res = await fetch(`/api/bookings/${id}`, {
+            const res = await fetch(`/api/accounts/${id}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(updatedBookingData),
+                body: JSON.stringify(updatedAccountData),
             });
             const data = await res.json();
             return data;
@@ -47,11 +47,11 @@ export const updateBooking = createAsyncThunk(
     }
 );
 
-export const deleteBooking = createAsyncThunk(
-    "bookings/deleteBooking",
+export const deleteAccount = createAsyncThunk(
+    "accounts/deleteAccount",
     async (id) => {
         try {
-            await fetch(`/api/bookings/${id}`, {
+            await fetch(`/api/accounts/${id}`, {
                 method: 'DELETE',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(id),
@@ -62,3 +62,4 @@ export const deleteBooking = createAsyncThunk(
         }
     }
 );
+

@@ -5,7 +5,7 @@ const Card = ({ item, onRentClick }) => {
   const {
     id,
     name,
-    description: fullDescription,
+    description: fullDescription = "",
     price,
     isAvailable,
     imageUrl,

@@ -121,9 +121,20 @@ const BookingsPage = () => {
     dispatch(addBooking(
       newBooking
     ));
-  };
 
-  console.log("formData:", formData);
+    const f1 = async() => {
+      try {
+        const res =  await dispatch(addBooking(newBooking)).unwrap();
+        console.log("Adding result:", res);
+        toast.success("Booking added successfully!");
+      } catch (error) {
+        console.error("Adding failed:", error);
+        toast.error("Failed to add booking.");
+      }
+    };
+    
+    f1();
+  };
 
   return loading ? (
     <Reloading loading={loading} />

@@ -1,7 +1,7 @@
 {
   "items": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Canon EOS R5",
       "description": "High-end mirrorless camera with 45MP sensor and 8K video recording.",
       "price": 60,
@@ -11,7 +11,7 @@
       "brand": "Canon"
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Sony A7 IV",
       "description": "Full-frame hybrid mirrorless camera with 33MP sensor, great for video and photo.",
       "price": 55,
@@ -21,7 +21,7 @@
       "brand": "Sony"
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "DJI Ronin-S",
       "description": "3-axis handheld gimbal stabilizer for DSLRs and mirrorless cameras.",
       "price": 25,
@@ -31,7 +31,7 @@
       "brand": "DJI"
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "Sigma 24-70mm f/2.8",
       "description": "Professional zoom lens with fast aperture and sharp image quality. wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww wwwwwwwwwww",
       "price": 20,
@@ -41,19 +41,29 @@
       "brand": "Sigma"
     },
     {
-      "id": 1761993947591,
-      "name": "Headphones",
-      "quantity": 3
+      "id": "1762433703376",
+      "name": "Butterfly",
+      "description": "non description",
+      "price": 12,
+      "isAvailable": false,
+      "imageUrl": "https://wallpapers.com/images/hd/nice-pictures-gink11pwmkspfvr4.jpg",
+      "category": "Nature",
+      "brand": "Natures Co."
     },
     {
-      "id": 1761995560842,
-      "name": "Headphones",
-      "quantity": 3
+      "id": 1762734118292,
+      "name": "snacks",
+      "description": "fwq",
+      "price": 60,
+      "isAvailable": true,
+      "imageUrl": "https://wallpapers.com/images/hd/nice-pictures-gink11pwmkspfvr4.jpg",
+      "category": "Nature",
+      "brand": "Natures Co."
     }
   ],
   "accounts": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Admin User",
       "email": "admin@example.com",
       "password": "admin123",
@@ -64,7 +74,7 @@
       ]
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "John Doe",
       "email": "john@example.com",
       "password": "password123",
@@ -75,7 +85,7 @@
       ]
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Jane Smith",
       "email": "jane@example.com",
       "password": "password123",
@@ -86,7 +96,7 @@
   ],
   "bookings": [
     {
-      "id": 1,
+      "id": "1",
       "accountId": 1,
       "array_itemsIds": [
         1
@@ -97,7 +107,7 @@
       "status": "confirmed"
     },
     {
-      "id": 2,
+      "id": "2",
       "accountId": 2,
       "array_itemsIds": [
         2,
@@ -109,19 +119,7 @@
       "status": "pending"
     },
     {
-      "id": "18a4",
-      "accountId": "3",
-      "array_itemsIds": [
-        4
-      ],
-      "payment_method": "n",
-      "start_date": "2025-11-06",
-      "end_date": "2025-11-07",
-      "status": "pending",
-      "total": 20
-    },
-    {
-      "id": 1762383174902,
+      "id": "1762383174902",
       "accountId": "6",
       "array_itemsIds": [
         4

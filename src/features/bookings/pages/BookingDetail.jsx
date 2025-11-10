@@ -3,11 +3,15 @@ import { Link, useParams } from "react-router-dom";
 import { useInventory } from "../../../hooks/useInventory";
 import { useBookings } from  "../../../hooks/useBookings";
 import { useChangeTitle } from "../../../hooks/useChangeTitle";
+import { useDispatch } from "react-redux";
+import { updateBooking, deleteBooking } from "../bookingsThunks";
+import { toast } from "react-toastify";
 import Reloading from "../../../components/Reloading";
 
 const BookingDetail = () => {
 
   const { id } = useParams();
+  const dispatch = useDispatch();
   useChangeTitle(`Booking Detail ${id}`);
 
   const { bookingsArray, loadingBookings, errorBookings } = useBookings();
@@ -16,7 +20,9 @@ const BookingDetail = () => {
   const booking = bookingsArray.find((b) => String(b.id) === id);
 
   const [isEditing, setIsEditing] = useState(false);
-  const [formData, setFormData] = useState(booking);
+  const [formData, setFormData] = useState({...booking, string_itemsIds: ""});
+  // console.log("formData:", formData);
+  // console.log("booking:", booking);
 
   if (loadingBookings || loading) return <Reloading loading />;
   if (errorBookings) return <p className="p-6 text-red-500">Error: {errorBookings}</p>;
@@ -28,7 +34,11 @@ const BookingDetail = () => {
       booking.array_itemsIds?.includes(Number(item.id))
     ) ?? [];
 
-  const handleEditToggle = () => setIsEditing(!isEditing);
+  const handleEditToggle = () => {
+    setIsEditing(!isEditing)
+    setFormData({...booking, string_itemsIds: ""})
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -36,14 +46,70 @@ const BookingDetail = () => {
 
   const handleSave = () => {
     console.log("Updated booking:", formData);
+
+    const { accountId, string_itemsIds, payment_method, start_date, end_date, status, total } = formData;
+
+    // Simple validation can be added here
+    if (!accountId || !string_itemsIds|| !start_date || !status || !payment_method || !total || !end_date || !start_date) {
+      toast.error("Please fill in all required fields correctly.");
+      return;
+    }
+    const ids = [];
+
+    // Parse string_itemsIds into array of numbers,
+    // but don't check validity here or usefullness
+    if (string_itemsIds && string_itemsIds.length > 0) {
+      const splitted = string_itemsIds.split(",").map(s => s.trim());
+      for (const strId of splitted) {
+        const numId = Number(strId);
+        if (!isNaN(numId)) {
+          ids.push(numId);
+        }
+      }
+    }
+
+    const updatedBookingData = {
+      accountId,
+      array_itemsIds: ids,
+      payment_method,
+      start_date,
+      end_date,
+      status,
+      total
+    };
+
+    const f1 = async() => {
+      try {
+        const res =  await dispatch(updateBooking({id, updatedBookingData})).unwrap();
+        console.log("Update result:", res);
+        toast.success("Booking updated successfully!");
+      } catch (error) {
+        console.error("Update failed:", error);
+        toast.error("Failed to update booking.");
+      }
+    };
+
+    f1();
     setIsEditing(false);
     // TODO: send update request to backend
   };
 
   const handleDelete = () => {
     if (window.confirm("Are you sure you want to delete this booking?")) {
-      console.log("Deleting booking:", id);
-      // TODO: implement delete API
+      console.log("Deleting booking:", id);;
+
+      const f1 = async() => {
+        try {
+          const res = await dispatch(deleteBooking(id)).unwrap();
+          console.log("Delete result:", res);
+          toast.success("Booking deleted successfully!");
+        } catch (error) {
+          console.error("Delete failed:", error);
+          toast.error("Failed to delete booking.");
+        }
+      };
+
+      f1();
     }
   };
 
@@ -185,6 +251,21 @@ const BookingDetail = () => {
               onChange={handleChange}
               className="p-2 border rounded"
               placeholder="Total"
+            />
+          </div>
+
+          {/* Items IDs */}
+          <div className="flex flex-col col-span-2">
+            <label className="text-sm font-medium text-gray-600 mb-1">
+              Associated Items IDs (comma-separated)
+            </label>
+            <input
+              type="text"
+              name="string_itemsIds"
+              value={formData.string_itemsIds}
+              onChange={handleChange}
+              className="p-2 border rounded"
+              placeholder="e.g., 1, 2, 3"
             />
           </div>
 
