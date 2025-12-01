@@ -1,29 +1,8 @@
 import { Link } from "react-router-dom";
+import { print_array_itemsIds } from "../../../utils/renderingHelpFunctions";
 
 const BookingsTable = ({ bookings }) => {
-    const print_array_itemsIds = (array_itemsIds) => {
-        if (!array_itemsIds || array_itemsIds.length === 0) return "None";
-        if (array_itemsIds.length === 1) return(
-            <Link
-                to={`/dashboard/inventory/${array_itemsIds[0]}`}
-                className="text-blue-600 hover:underline"
-            >
-                {array_itemsIds[0]}
-            </Link>
-        )
-
-        return array_itemsIds.map((itemId, index) => {
-            return (
-                <Link
-                    key={itemId}
-                    to={`/dashboard/inventory/${itemId}`}
-                    className="text-blue-600 hover:underline mr-2"
-                >
-                    {index < array_itemsIds.length - 1 ? `${itemId},` : itemId}
-                </Link>
-            )
-        })
-    }
+    
     return (
         <div className="overflow-x-auto mt-6">
         <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-sm">

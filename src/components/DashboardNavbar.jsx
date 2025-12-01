@@ -1,8 +1,24 @@
 import React from "react";
+import { useAuth } from "../hooks/useAuth";
+import { Link } from 'react-router-dom';
 import { HiOutlineBell } from "react-icons/hi";
+import Reloading from "./Reloading";
 import logo from '../assets/images/logo.png';
 
 const DashboardNavbar = () => {
+  const {user, loading, error, isAuthenticated} = useAuth();
+  
+  if (error) {
+    return <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+      <strong className="font-bold">Error:</strong>
+      <span className="block sm:inline"> {error}</span>
+    </div>
+  }
+  if (loading) {
+    return <Reloading loading={loading} />;
+  }
+
+  console.log(user.username, isAuthenticated)
   return (
     <nav className="bg-indigo-700 border-b border-indigo-500 sticky top-0 z-10">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -30,20 +46,34 @@ const DashboardNavbar = () => {
           </div>
 
           {/* Right: Notification + Profile */}
-          <div className="flex items-center gap-6">
-            <button className="text-white hover:text-gray-200 relative">
-              <HiOutlineBell className="w-6 h-6" />
-              <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full px-1.5">
-                3
-              </span>
-            </button>
-
-            <img
-              src="/assets/staff-avatar.jpg"
-              alt="Profile"
-              className="w-10 h-10 rounded-full border-2 border-white"
-            />
-          </div>
+          { isAuthenticated ? (
+                <div className="flex items-center gap-6">
+                  <Link to="/profile" >
+                  <span className="text-white font-medium">Welcome, 
+                    {user ? (
+                      user.username ? " " + user.username : " User"
+                    ) : ("")}</span>
+                    </Link>
+                  <button className="text-white hover:text-gray-200 relative">
+                    <HiOutlineBell className="w-6 h-6" />
+                    <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full px-1.5">
+                      3
+                    </span>
+                  </button>
+            
+                  <Link to="/profile" >
+                  <img
+                    // src="..\assets\images\placeholder.png"
+                    src='src/assets/images/staff-placeholder.png' 
+                    alt="Profile"
+                    className="w-10 h-10 rounded-full border-2 border-white"
+                  />
+                  </Link>
+              </div>
+              ) : (
+                ""
+              )
+            }
         </div>
       </div>
     </nav>

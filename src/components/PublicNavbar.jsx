@@ -1,5 +1,9 @@
 import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import logo from '../assets/images/logo.png';
+import { HiOutlineBell } from "react-icons/hi";
+import { useAuth } from "../hooks/useAuth";
+import Reloading from './Reloading';
 
 /*
 TODO: Add more links to the navbar
@@ -7,6 +11,19 @@ TODO: Add more links to the navbar
 */
 
 function PublicNavbar() {
+  const {user, loading, error, isAuthenticated} = useAuth();
+  // console.log(user)
+
+  if (error) {
+    return <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+      <strong className="font-bold">Error:</strong>
+      <span className="block sm:inline"> {error}</span>
+    </div>
+  }
+  if (loading) {
+    return <Reloading loading={loading} />;
+  }
+
   const linkCLass =  ({ isActive}) => isActive ?  
                   'bg-black text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2' :
                   'text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2';
@@ -52,6 +69,36 @@ function PublicNavbar() {
                 </NavLink>
               </div>
             </div>
+
+            {/* Right: Notification + Profile */}
+              { isAuthenticated ? (
+                <div className="flex items-center gap-6">
+                  <Link to="/profile" >
+                  <span className="text-white font-medium">Welcome, 
+                    {user ? (
+                      user.username ? " " + user.username : " User"
+                    ) : ("")}</span>
+                    </Link>
+                  <button className="text-white hover:text-gray-200 relative">
+                    <HiOutlineBell className="w-6 h-6" />
+                    <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full px-1.5">
+                      3
+                    </span>
+                  </button>
+            
+                  <Link to="/profile" >
+                  <img
+                    // src="..\assets\images\placeholder.png"
+                    src='src/assets/images/staff-placeholder.png' 
+                    alt="Profile"
+                    className="w-10 h-10 rounded-full border-2 border-white"
+                  />
+                  </Link>
+              </div>
+              ) : (
+                ""
+              )
+            }
           </div>
         </div>
       </div>

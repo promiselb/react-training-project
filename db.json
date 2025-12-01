@@ -64,7 +64,7 @@
   "accounts": [
     {
       "id": "1",
-      "username": "Admin_User",
+      "username": "admin",
       "email": "admin@example.com",
       "password": "admin123",
       "role": "admin",
@@ -75,11 +75,11 @@
     },
     {
       "id": "2",
-      "username": "John Doe",
+      "username": "John_Doe",
       "email": "john@example.com",
       "password": "password123",
       "role": "client",
-      "phoneNumber": "+198765432",
+      "phoneNumber": "198765432",
       "array_BookingsIds": [
         2
       ]

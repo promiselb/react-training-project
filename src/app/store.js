@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import accountsReducer from '../features/accounts/accountsSlice';
 import inventoryReducer from '../features/inventory/inventorySlice';
 import bookingsReducer from '../features/bookings/bookingsSlice';
+import authReducer from '../features/auth/authSlice'
 
 const initialState = {
     
@@ -12,6 +13,7 @@ export const store = configureStore({
         accounts: accountsReducer,
         inventory: inventoryReducer,
         bookings: bookingsReducer,
+        auth: authReducer,
     }
 })
 // const 

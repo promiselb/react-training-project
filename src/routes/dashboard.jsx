@@ -13,17 +13,18 @@ import InventoryFormPage from "../features/inventory/pages/InventoryForm";
 
 import BookingDetailPage from "../features/bookings/pages/BookingDetail";
 import BookingsPage from "../features/bookings/pages/BookingsPage";
+import { PrivateRoute } from "../features/auth/PrivateRoute";
 
 // A wrapper that protects routes
 // import RequireAuth from "../features/auth/RequireAuth";
 
 const dashboardRoutes = (
   <Route
-    path="/dashboard"
+    path="/dashboard/*"
     element={
-      // <RequireAuth>
+      <PrivateRoute requiredRole="admin">
         <DashboardLayout />
-      // </RequireAuth>
+      </PrivateRoute>
     }
   >
     {/* Dashboard home */}

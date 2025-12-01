@@ -7,7 +7,8 @@ import {
   validatePassword,
 } from "../utils/accountValidationFunctions";
 import { useChangeTitle } from "../hooks/useChangeTitle";
-import { loginAccount } from "../features/accounts/accountsThunks";
+// import { loginAccount } from "../features/accounts/accountsThunks";
+import { loginUser } from "../features/auth/authThunks";
 
 const SignIn = () => {
   useChangeTitle("Public - Sign In");
@@ -57,7 +58,7 @@ const SignIn = () => {
 
     setIsSubmitting(true);
     try {
-      const res = await dispatch(loginAccount(formData)).unwrap();
+      const res = await dispatch(loginUser(formData)).unwrap();
       console.log("Signed in:", res);
       toast.success("✅ Signed in successfully!");
       setFormData({
