@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { print_array_itemsIds } from "../utils/renderingHelpFunctions";
 import { selectBookings } from "../features/bookings/bookingsSlice";
 
-const UserBookingsTable = (array_BookingsIds) => {
+const UserBookingsTable = ({array_BookingsIds}) => {
     
 //   const bookingsState = useSelector(selectBookings);
 
@@ -30,7 +30,7 @@ const UserBookingsTable = (array_BookingsIds) => {
         </tr>
       </thead>
       <tbody>
-        {/* {userBookings.map((booking) => (
+        {userBookings.map((booking) => (
           <tr key={booking.id}>
             <td className="border p-2">{booking.id}</td>
             <td className="border p-2">{print_array_itemsIds(booking.array_itemsIds)}</td>
@@ -48,10 +48,11 @@ const UserBookingsTable = (array_BookingsIds) => {
               <Link to={`/bookings/${booking.id}`}>Open</Link>
             </td>
           </tr>
-        ))} */}
+        ))}
       </tbody>
     </table>
   );
 };
 
 export default UserBookingsTable;
+

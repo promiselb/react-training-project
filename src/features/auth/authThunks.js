@@ -4,13 +4,13 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 // ✅ Mock login — replace with real API
 export const loginUser = createAsyncThunk(
   "auth/loginUser",
-  async ({ email, password }, { rejectWithValue }) => {
+  async ({ username ,email, password }, { rejectWithValue }) => {
     try {
       const res = await fetch("/api/accounts");
       const accounts = await res.json();
 
       const user = accounts.find(
-        (acc) => acc.email === email && acc.password === password
+        (acc) => acc.username === username && acc.email === email && acc.password === password
       );
 
       if (!user) {
