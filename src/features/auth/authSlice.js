@@ -4,32 +4,8 @@ import { loginUser, logoutUser } from "./authThunks";
 
 const storedUser = JSON.parse(localStorage.getItem("user"));
 
-// if (!storedUser) {
-//     JSON.parse(localStorage.setItem("user",
-//     JSON.stringify(
-//        {
-//         "id": "1",
-//     "username": "admin",
-//     "email": "admin@example.com",
-//     "password": "admin123",
-//     "role": "admin",
-//        }
-//     )))
-// }
-
-// console.log("Stored User After:", storedUser);
-// console.log("Is Authenticated:", !!storedUser);
-
 const initialState = {
-  user: storedUser 
-  // ?? {
-  //   "id": "1",
-  //   "username": "admin",
-  //   "email": "admin@example.com",
-  //   "password": "admin123",
-  //   "role": "admin",
-  // }, // { id, name, email, role, token }
-  ,
+  user: storedUser ,
   loading: false,
   error: null,
   isAuthenticated: ((v) => !!v)(storedUser),
