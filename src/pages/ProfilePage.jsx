@@ -1,4 +1,4 @@
-import React, { use, useState } from "react";
+import { useState } from "react";
 import { useAuth } from "../hooks/useAuth";
 import { useDispatch } from "react-redux";
 import { logoutUser } from "../features/auth/authThunks";
@@ -6,21 +6,21 @@ import { updateAccount } from "../features/accounts/accountsThunks";
 import { useChangeTitle } from "../hooks/useChangeTitle";
 import UserBookingsTable from "../components/UserBookingsTable";
 import { validateConfirmPassword, validatePassword } from "../utils/accountValidationFunctions";
+import Reloading from "../components/Reloading";
+import { toast } from "react-toastify"
 
 const ProfilePage = () => {
   useChangeTitle("Dashboard - Profile");
   const { user, loading, error, isAuthenticated } = useAuth();
-  console.log("ProfilePage - User:", user);
   const dispatch = useDispatch();
 
   const [newPassword, setNewPassword] = useState("");
   const [confirmNewPassword, setConfirmNewPassword] = useState("");
   const [isChangingPassword, setIsChangingPassword] = useState(false);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <Reloading />;
   if (!isAuthenticated) return <p>You are not logged in.</p>;
   if (!user) return <p>No user found.</p>;
-
   const handlePasswordSubmit = (e) => {
     e.preventDefault();
     if (validatePassword(newPassword)) return validatePassword(newPassword);
@@ -28,10 +28,16 @@ const ProfilePage = () => {
 
     const f1 = async () => {
         try {
-            const res = await dispatch(updateAccount({ 
+            const data = {
                 ...user,
                 password: newPassword
-            })).unwrap();
+            }
+            const res = await dispatch(updateAccount(
+                {
+                    id: user.id,
+                    updatedAccountData: data
+                }
+            )).unwrap();
             console.log("Updated Password:", newPassword);
             toast.success("✅ Account Password Updated successfully!");
             setNewPassword("");
@@ -114,7 +120,7 @@ const ProfilePage = () => {
       {/* USER BOOKINGS */}
       <div className="bg-white p-4 rounded-lg shadow mb-6">
         <h2 className="text-xl font-semibold mb-4">Your Bookings</h2>
-        <UserBookingsTable bookingsIds={user.array_BookingsIds} />
+        <UserBookingsTable array_BookingsIds={user.array_BookingsIds} />
       </div>
 
       {/* LOGOUT */}

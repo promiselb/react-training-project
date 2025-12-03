@@ -23,10 +23,12 @@ export const loginUser = createAsyncThunk(
 
       // Normally you'd get a token from your backend
       return {
-        id: user.id,
-        name: user.name,
-        email: user.email,
-        role: user.role,
+        // id: user.id,
+        // name: user.name,
+        // email: user.email,
+        // role: user.role,
+        ...user,
+        array_BookingsIds: user.array_BookingsIds,
         // token: "fake-jwt-token",
       };
     } catch (err) {

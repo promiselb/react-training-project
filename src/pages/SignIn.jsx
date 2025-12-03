@@ -9,10 +9,12 @@ import {
 import { useChangeTitle } from "../hooks/useChangeTitle";
 // import { loginAccount } from "../features/accounts/accountsThunks";
 import { loginUser } from "../features/auth/authThunks";
+import { useNavigate } from "react-router-dom";
 
 const SignIn = () => {
   useChangeTitle("Public - Sign In");
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     username: "",
@@ -66,6 +68,8 @@ const SignIn = () => {
         email: "",
         password: "",
       });
+      // Redirect or perform other actions after successful sign-in
+      navigate("/profile");
     } catch (error) {
       console.error("Sign-in failed:", error);
       toast.error("Failed to sign in.");

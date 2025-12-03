@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { print_array_itemsIds } from "../../../utils/renderingHelpFunctions";
+import { print_array_itemsIds_DashboardPage } from "../../../utils/renderingHelpFunctions";
 
 const BookingsTable = ({ bookings }) => {
     
@@ -35,7 +35,7 @@ const BookingsTable = ({ bookings }) => {
                     </Link>
                 </td>
                 <td className="py-3 px-4">
-                    {print_array_itemsIds(booking.array_itemsIds)}
+                    {print_array_itemsIds_DashboardPage(booking.array_itemsIds)}
                 </td>
                 <td className="py-3 px-4">{booking.start_date}</td>
                 <td className="py-3 px-4">{booking.end_date}</td>

@@ -66,11 +66,11 @@
       "id": "1",
       "username": "admin",
       "email": "admin@example.com",
-      "password": "admin123",
+      "password": "admin1234",
       "role": "admin",
       "phoneNumber": "+123456789",
       "array_BookingsIds": [
-        1
+        "1"
       ]
     },
     {
@@ -81,7 +81,7 @@
       "role": "client",
       "phoneNumber": "198765432",
       "array_BookingsIds": [
-        2
+        "2"
       ]
     },
     {
@@ -91,7 +91,10 @@
       "password": "password123",
       "role": "staff",
       "phoneNumber": "+112233445",
-      "array_BookingsIds": []
+      "array_BookingsIds": [
+        "1",
+        "2"
+      ]
     },
     {
       "id": "1762783920811",
@@ -100,11 +103,10 @@
       "password": "123f",
       "phoneNumber": "12345678",
       "array_BookingsIds": [
-        1,
-        2
+        "1",
+        "2"
       ],
-      "role": "client",
-      "string_bookingsIds": "1,2"
+      "role": "client"
     }
   ],
   "bookings": [
