@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { HiOutlineBell } from "react-icons/hi";
 import Reloading from "./Reloading";
 import logo from '../assets/images/logo.png';
+import Searchbar from "./Searchbar";
 
 const DashboardNavbar = () => {
   const {user, loading, error, isAuthenticated} = useAuth();
@@ -36,14 +37,24 @@ const DashboardNavbar = () => {
             </span>
             </div>
 
-          <div className="relative w-64">
+          <Searchbar
+            value={""}
+            delay={400}
+            placeholder={"Search..."}
+            onDebounce={() => {}}
+            divStyle={"relative w-64"}
+            inputStyle={"w-full  bg-indigo-600 text-white placeholder-gray-200 border border-indigo-500 rounded-lg pl-10 pr-3 py-2 text-sm focus:ring-2 focus:ring-white focus:outline-none"}
+            spanStyle={"absolute right-3 top-2.5 text-gray-200"}
+            spanText={"🔍"}
+          />
+          {/* <div className="relative w-64">
             <input
               type="text"
               placeholder="Search..."
               className="w-full bg-indigo-600 text-white placeholder-gray-200 border border-indigo-500 rounded-lg pl-10 pr-3 py-2 text-sm focus:ring-2 focus:ring-white focus:outline-none"
             />
             <span className="absolute left-3 top-2.5 text-gray-200">🔍</span>
-          </div>
+          </div> */}
 
           {/* Right: Notification + Profile */}
           { isAuthenticated ? (

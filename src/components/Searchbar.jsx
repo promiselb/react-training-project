@@ -6,9 +6,12 @@ const Searchbar = ({
   value,
   delay = 400, 
   placeholder = "Search...", 
+  spanText = "",
   onChange, 
   onDebounce,
-  style }) => {
+  divStyle,
+  inputStyle,
+  spanStyle }) => {
 
   const [inputValue, setInputValue] = useState(value);
   const debouncedTerm = useDebounce(inputValue, delay);
@@ -31,13 +34,16 @@ const Searchbar = ({
 
   return (
     <>
-     <input
+    <div className={divStyle}>
+      <input
         type="text"
         placeholder={placeholder}
         value={inputValue}
         onChange={handleInputChange}
-        className={style}
-          />
+        className={inputStyle}
+      />
+      <span className={spanStyle} >{spanText}</span>
+    </div>
     </>
   )
 }

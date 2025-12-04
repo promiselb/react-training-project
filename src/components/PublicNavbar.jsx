@@ -78,7 +78,7 @@ function PublicNavbar() {
                     {user ? (
                       user.username ? " " + user.username : " User"
                     ) : ("")}</span>
-                    </Link>
+                  </Link>
                   <button className="text-white hover:text-gray-200 relative">
                     <HiOutlineBell className="w-6 h-6" />
                     <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full px-1.5">
