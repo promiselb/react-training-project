@@ -13,9 +13,5 @@ export const useInventory = () => {
         }
     }, [dispatch, items.length, loading]);
 
-    // useEffect(() => {
-    //     dispatch(fetchItems());
-    // }, [dispatch]);
-
     return { items, loading, error };
 }

@@ -1,16 +1,29 @@
 import { useState, useEffect} from 'react'
+import { useDispatch } from 'react-redux'
+
+import { useSelector } from 'react-redux'
+import { selectItems, setPerPage } from '../features/items/itemsSlice'
+import useItems from '../hooks/useItems'
+import { fetchItems } from '../features/items/itemsThunks';
+import { setPage } from "../features/items/itemsSlice"; 
+
 import ItemListing from './ItemListing'
 import Reloading from './Reloading'
-import { fetchItems } from '../utils/fetchFunctions'
 import SearchBar from './SearchBar'
 
 const ItemsListings = () => {
   // >> Items to be loaded
   // TODO: Use Redux state
-  const [items, setItems] = useState([])
+  const dispatch = useDispatch();
+  const { itemsArray, page, perPage, totalPages, loading,error } = useSelector(
+    selectItems
+  );
+  console.log(itemsArray , page, perPage, totalPages, loading, error);
 
-  // $ Loading state
-  const [loading, setLoading] = useState(true)
+  // Fetch new data when page changes
+  useEffect(() => {
+    dispatch(fetchItems({ page, perPage }));
+  }, [page, perPage, dispatch]);
 
   // $ Filter items based on search term
   const [searchTerm, setSearchTerm] = useState("");
@@ -23,27 +36,15 @@ const ItemsListings = () => {
     console.log("Debounced Search Term:", term);
     setSearchTerm(term);
   }
-  
-  useEffect(() => {
-    const loadItems = async () => {
-      try {
-        const data = await fetchItems();
-        setItems(data);
-      } catch (err) {
-        console.error(err);
-      } finally {
-        setLoading(false);
-      }
-    };
 
-    loadItems();
-  }, []); // 👈 Run once on mount
+  if (loading) return <Reloading />
+  if (error) return (<p>{error  }</p>)
 
   const filteredItems = searchTerm.length > 0 
-  ? items.filter(item =>
+  ? itemsArray.filter(item =>
     item.name.toLowerCase().includes(searchTerm.toLowerCase())
   ) 
-  : items;
+  : itemsArray;
 
   return (
       <div className="min-h-screen bg-gray-50 py-10 px-6">
@@ -73,28 +74,49 @@ const ItemsListings = () => {
           <Reloading loading={loading} />
         ) : (
           <div className="flex flex-wrap -m-4">
-            {filteredItems.map((item) => (
+            {filteredItems?.map((item) => (
               <ItemListing key={item.id} item={item} />
             ))}
           </div>
         )}
+
+        {/* Pagination Controls */}
+        <div className="flex justify-center items-center gap-4 mt-10">
+          <button
+            disabled={page === 1}
+            onClick={() => dispatch(setPage(page - 1))}
+            className={`px-4 py-2 rounded-lg shadow 
+            ${page === 1 ? "bg-gray-300 cursor-not-allowed" : "bg-blue-500 hover:bg-blue-600 text-white"}`}
+          >
+            Previous
+          </button>
+
+          <span className="text-lg font-semibold text-gray-700">
+            Page {page} of {totalPages}
+          </span>
+
+          <button
+            disabled={page === totalPages}
+            onClick={() => dispatch(setPage(page + 1))}
+            className={`px-4 py-2 rounded-lg shadow 
+            ${page === totalPages ? "bg-gray-300 cursor-not-allowed" : "bg-blue-500 hover:bg-blue-600 text-white"}`}
+          >
+            Next
+          </button>
+
+          {/* <label className="ml-6 text-gray-700 font-medium">Items per page:</label>
+          <input
+            type="number"
+            min="1"
+            max={totalPages}
+            // value={perPage}
+            onChange={(e) => {setLimit(Number(e.target.value))}}
+            className="w-20 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          ></input> */}
+      </div>
       </div>
     </div>
   )
 }
 
 export default ItemsListings
-
-
-// const fetchItems = async() => {
-    //   try {
-    //     const res = await fetch('/api/items')
-    //     const data = await res.json()
-    //     setItems(data)
-    //   } catch (err) {
-    //     console.error('Error fetching items:', err)
-    //   } finally {
-    //     setLoading(false);
-    //   } 
-    // }
-    // fetchItems();

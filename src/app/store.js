@@ -3,10 +3,7 @@ import accountsReducer from '../features/accounts/accountsSlice';
 import inventoryReducer from '../features/inventory/inventorySlice';
 import bookingsReducer from '../features/bookings/bookingsSlice';
 import authReducer from '../features/auth/authSlice'
-
-const initialState = {
-    
-}
+import itemsReducer from '../features/items/itemsSlice';
 
 export const store = configureStore({
     reducer: {
@@ -14,6 +11,7 @@ export const store = configureStore({
         inventory: inventoryReducer,
         bookings: bookingsReducer,
         auth: authReducer,
+        items: itemsReducer,
     }
 })
 // const 
