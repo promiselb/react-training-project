@@ -9,6 +9,7 @@ import SignUp from "../pages/SignUp";
 import NotFoundPage from "../pages/NotFoundPage";
 import Unauthorized from "../pages/Unauthorized";
 import ProfilePage from "../pages/ProfilePage";
+import PaginatedPage from "../pages/PaginatedPage";
 
 
 
@@ -16,6 +17,8 @@ const publicRoutes = (
   <Route element={<PublicLayout />}>
     {/* Home/catalog */}
     <Route index element={<CatalogPage />} />
+    {/* Paginated Items Page */}
+    <Route path="paginated-items" element={<PaginatedPage />} />
     {/* Item Page */}
     <Route path="items/:id" element={<ItemPage />} />
     {/* SignIn */}

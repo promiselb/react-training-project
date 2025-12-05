@@ -5,18 +5,18 @@ import { useEffect } from "react";
 
 const useItems = () => {
     const dispatch = useDispatch();
-    const { itemsArray , page, limit, totalPages, loading, error } = useSelector(selectItems);
-    console.log(itemsArray , page, limit, totalPages, loading, error);
+    const { itemsArray, loading, error } = useSelector(selectItems);
+    console.log(itemsArray, loading, error);
   
     useEffect( () => {
         if (
             itemsArray.length === 0 && 
             !loading) {
-            dispatch( fetchItems({ page, limit }) );
+            dispatch( fetchItems() );
         }
-    }, [dispatch, itemsArray, loading, page, limit])
+    }, [dispatch, itemsArray, loading])
 
-    return { itemsArray , page, limit, totalPages, loading, error };
+    return { itemsArray, loading, error };
 }
 
 export default useItems

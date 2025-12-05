@@ -2,10 +2,9 @@ import { useState, useEffect} from 'react'
 import { useDispatch } from 'react-redux'
 
 import { useSelector } from 'react-redux'
-import { selectItems, setPerPage } from '../features/items/itemsSlice'
+import { selectItems } from '../features/items/itemsSlice'
 import useItems from '../hooks/useItems'
 import { fetchItems } from '../features/items/itemsThunks';
-import { setPage } from "../features/items/itemsSlice"; 
 
 import ItemListing from './ItemListing'
 import Reloading from './Reloading'
@@ -15,15 +14,7 @@ const ItemsListings = () => {
   // >> Items to be loaded
   // TODO: Use Redux state
   const dispatch = useDispatch();
-  const { itemsArray, page, perPage, totalPages, loading,error } = useSelector(
-    selectItems
-  );
-  console.log(itemsArray , page, perPage, totalPages, loading, error);
-
-  // Fetch new data when page changes
-  useEffect(() => {
-    dispatch(fetchItems({ page, perPage }));
-  }, [page, perPage, dispatch]);
+  const { itemsArray, loading, error } = useItems();
 
   // $ Filter items based on search term
   const [searchTerm, setSearchTerm] = useState("");
@@ -37,7 +28,7 @@ const ItemsListings = () => {
     setSearchTerm(term);
   }
 
-  if (loading) return <Reloading />
+  if (loading) return <Reloading loading={loading}/>
   if (error) return (<p>{error  }</p>)
 
   const filteredItems = searchTerm.length > 0 
@@ -67,7 +58,6 @@ const ItemsListings = () => {
           />
           
         </div>
-        
 
         {/* Items Grid */}
         { loading ? (
@@ -79,41 +69,6 @@ const ItemsListings = () => {
             ))}
           </div>
         )}
-
-        {/* Pagination Controls */}
-        <div className="flex justify-center items-center gap-4 mt-10">
-          <button
-            disabled={page === 1}
-            onClick={() => dispatch(setPage(page - 1))}
-            className={`px-4 py-2 rounded-lg shadow 
-            ${page === 1 ? "bg-gray-300 cursor-not-allowed" : "bg-blue-500 hover:bg-blue-600 text-white"}`}
-          >
-            Previous
-          </button>
-
-          <span className="text-lg font-semibold text-gray-700">
-            Page {page} of {totalPages}
-          </span>
-
-          <button
-            disabled={page === totalPages}
-            onClick={() => dispatch(setPage(page + 1))}
-            className={`px-4 py-2 rounded-lg shadow 
-            ${page === totalPages ? "bg-gray-300 cursor-not-allowed" : "bg-blue-500 hover:bg-blue-600 text-white"}`}
-          >
-            Next
-          </button>
-
-          {/* <label className="ml-6 text-gray-700 font-medium">Items per page:</label>
-          <input
-            type="number"
-            min="1"
-            max={totalPages}
-            // value={perPage}
-            onChange={(e) => {setLimit(Number(e.target.value))}}
-            className="w-20 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-          ></input> */}
-      </div>
       </div>
     </div>
   )

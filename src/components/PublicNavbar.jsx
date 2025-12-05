@@ -53,6 +53,11 @@ function PublicNavbar() {
                     Home
                 </NavLink>
                 <NavLink
+                  to="/paginated-items"
+                  className={linkCLass}>
+                    Paginated Items
+                </NavLink>
+                <NavLink
                   to="/signin"
                   className={linkCLass}>
                     Sign In

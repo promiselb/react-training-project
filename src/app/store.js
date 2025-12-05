@@ -4,6 +4,7 @@ import inventoryReducer from '../features/inventory/inventorySlice';
 import bookingsReducer from '../features/bookings/bookingsSlice';
 import authReducer from '../features/auth/authSlice'
 import itemsReducer from '../features/items/itemsSlice';
+import paginatdItemsSlice from "../features/paginatedItems/paginatedItemsSlice";
 
 export const store = configureStore({
     reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
         bookings: bookingsReducer,
         auth: authReducer,
         items: itemsReducer,
+        paginatdItems: paginatdItemsSlice,
     }
 })
 // const 
