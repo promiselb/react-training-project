@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import usePaginatedQuery from '../hooks/usePaginatedQuery'
 import ItemListing from '../components/ItemListing'
 import Reloading from '../components/Reloading'
-import SearchBar from '../components/SearchBar'
+import Searchbar from '../components/Searchbar'
 
 
 const PaginatedPage = () => {

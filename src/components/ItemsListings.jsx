@@ -8,7 +8,7 @@ import { fetchItems } from '../features/items/itemsThunks';
 
 import ItemListing from './ItemListing'
 import Reloading from './Reloading'
-import SearchBar from './SearchBar'
+import Searchbar from './Searchbar'
 
 const ItemsListings = () => {
   // >> Items to be loaded
@@ -43,7 +43,7 @@ const ItemsListings = () => {
         {/* Search bar */}
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-3xl font-semibold text-gray-800">Available Gear</h1>
-          <SearchBar 
+          <Searchbar 
           value={searchTerm} 
           delay={400} 
           placeholder={"Search gear..."}
