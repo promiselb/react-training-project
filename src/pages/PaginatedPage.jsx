@@ -44,7 +44,7 @@ const PaginatedPage = () => {
       <div className="min-h-screen bg-gray-50 py-10 px-6">
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-3xl font-semibold text-gray-800">Available Gear</h1>
-          <SearchBar 
+          <Searchbar 
           value={searchTerm} 
           delay={400} 
           placeholder={"Search gear..."}
